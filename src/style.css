@@ -42,6 +42,7 @@ footer {
 .empty-state-img {
   display: block;
   margin: 0 auto;
+  max-width: 100%;
 }
 /*today weather*/
 .weather-result {
