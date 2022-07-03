@@ -1,0 +1,151 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: rgb(239, 242, 244, 0.1);
+}
+h1 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  text-align: center;
+  color: #0d6efd;
+}
+h2 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  font-size: 20px;
+}
+p {
+  line-height: 1.5;
+}
+form {
+  margin-bottom: 30px;
+}
+ul {
+  margin-top: 24px;
+}
+footer {
+  text-align: center;
+  color: #a0c8ff;
+  font-size: small;
+}
+/*.gradient {
+  background: #e7f0fd;
+}*/
+/*form*/
+.weather-today {
+  padding: 25px;
+}
+/*empty state*/
+.empty-state {
+  display: block;
+}
+.empty-state-img {
+  display: block;
+  margin: 0 auto;
+}
+/*today weather*/
+.weather-result {
+  display: none;
+}
+.city,
+.date {
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+}
+.city {
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0;
+}
+.date {
+  font-size: 16px;
+  margin-bottom: 22px;
+  font-weight: 600;
+}
+.weather-icon {
+  display: block;
+  margin: 0 auto;
+  width: 90px;
+  max-width: 80%;
+}
+.min-max {
+  font-size: 10px;
+  text-align: center;
+  margin: 10px 0;
+}
+.temperatur {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+/*.temp-unit {
+  font-size: 20px;
+  vertical-align: super;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+}
+.unit-selected {
+  color: #0d6efd;
+  font-weight: 700;
+}*/
+.summary-today {
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+}
+.today-conditions {
+  list-style: none;
+}
+.today-details {
+  text-align: center;
+  margin: 8px 2px;
+  font-size: 14px;
+}
+.today-details,
+.weather-details {
+  line-height: 1.5;
+  font-size: 12px;
+}
+/*next 5 days*/
+.weather-details {
+  margin: 8px 0 12px 0;
+}
+.prediction-5-days {
+  margin: 0;
+  padding: 0;
+}
+
+.next-1-day,
+.next-2-day,
+.next-3-day,
+.next-4-day,
+.next-5-day {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.temp-next-1d,
+.temp-next-2d,
+.temp-next-3d,
+.temp-next-4d,
+.temp-next-5d {
+  text-align: right;
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+.extra-details {
+  display: none;
+}
+.collapsible {
+  cursor: pointer;
+  background-color: #e7f0fd;
+}
+.active,
+.collapsible:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
