@@ -60,24 +60,24 @@ footer {
 }
 .date {
   font-size: 16px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   font-weight: 600;
 }
 .weather-icon {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
   width: 90px;
   max-width: 80%;
 }
 .min-max {
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
-  margin: 10px 0;
+  margin: 4px 0;
 }
 .temperatur {
   text-align: center;
-  font-size: 30px;
-  margin: 0 0 10px 0;
+  font-size: 44px;
+  margin: 0 0 8px 0;
   font-weight: 700;
 }
 /*.temp-unit {
@@ -95,7 +95,7 @@ footer {
 .summary-today {
   text-align: center;
   font-size: 14px;
-  margin: 0;
+  margin-top: 0;
 }
 .today-conditions {
   list-style: none;

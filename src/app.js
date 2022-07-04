@@ -70,7 +70,12 @@ function searchCity(event) {
     let units = "metric";
     let apiUrl = `${apiEndPoint}?q=${newCity.value}&units=${units}&lan=en&appid=${apiKey}`;
     console.log(apiUrl);
-    axios.get(apiUrl).then(giveTemperature);
+    axios
+      .get(apiUrl)
+      .then(giveTemperature)
+      .catch((error) => {
+        alert("Ops! Couldn't find a city with that name.");
+      });
   }
 }
 function searchPosition(position) {
@@ -79,7 +84,12 @@ function searchPosition(position) {
   let units = "metric";
   let apiUrl = `${apiEndPoint}?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   console.log(apiUrl);
-  axios.get(apiUrl).then(giveTemperature);
+  axios
+    .get(apiUrl)
+    .then(giveTemperature)
+    .catch((error) => {
+      alert("Ops! Couldn't find your location.");
+    });
 }
 
 function getLocation() {
