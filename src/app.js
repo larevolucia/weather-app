@@ -55,6 +55,10 @@ function giveTemperature(response) {
     response.data.list[0].wind.speed * 3.6
   )}km/h`;
   document.querySelector(
+    "#rain-today"
+  ).innerHTML = `<strong>Precipitation</strong>: 
+    ${Math.round(response.data.list[0].pop * 100)} %`;
+  document.querySelector(
     "#pressure-today"
   ).innerHTML = `<strong>Pressure</strong> ${response.data.list[0].main.pressure}mb`;
   document.querySelector("#current-city").innerHTML = response.data.city.name;
