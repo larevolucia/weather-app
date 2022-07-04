@@ -87,7 +87,7 @@ function giveTemperature(response) {
 
   document.getElementById(
     "icon-next-1d"
-  ).src = `img/${response.data.list[1].weather[0].icon}.png`;
+  ).src = `img/${response.data.list[1].weather[0].icon.slice(0, -1)}d.png`;
   document.querySelector("#max-next-1d").innerHTML = `${Math.round(
     response.data.list[1].main.temp_max
   )}°`;
@@ -114,7 +114,7 @@ function giveTemperature(response) {
 
   document.getElementById(
     "icon-next-2d"
-  ).src = `img/${response.data.list[2].weather[0].icon}.png`;
+  ).src = `img/${response.data.list[2].weather[0].icon.slice(0, -1)}d.png`;
   document.querySelector("#max-next-2d").innerHTML = `${Math.round(
     response.data.list[2].main.temp_max
   )}°`;
@@ -141,7 +141,7 @@ function giveTemperature(response) {
 
   document.getElementById(
     "icon-next-3d"
-  ).src = `img/${response.data.list[3].weather[0].icon}.png`;
+  ).src = `img/${response.data.list[3].weather[0].icon.slice(0, -1)}d.png`;
   document.querySelector("#max-next-3d").innerHTML = `${Math.round(
     response.data.list[3].main.temp_max
   )}°`;
@@ -168,7 +168,7 @@ function giveTemperature(response) {
 
   document.getElementById(
     "icon-next-4d"
-  ).src = `img/${response.data.list[4].weather[0].icon}.png`;
+  ).src = `img/${response.data.list[4].weather[0].icon.slice(0, -1)}d.png`;
   document.querySelector("#max-next-4d").innerHTML = `${Math.round(
     response.data.list[4].main.temp_max
   )}°`;
@@ -195,7 +195,7 @@ function giveTemperature(response) {
 
   document.getElementById(
     "icon-next-5d"
-  ).src = `img/${response.data.list[5].weather[0].icon}.png`;
+  ).src = `img/${response.data.list[5].weather[0].icon.slice(0, -1)}d.png`;
   document.querySelector("#max-next-5d").innerHTML = `${Math.round(
     response.data.list[5].main.temp_max
   )}°`;
