@@ -54,7 +54,8 @@ function formatDate(date) {
 
 //change temperature from Celsius and Fahrenheit
 
-function convertToF() {
+function convertToF(value) {
+  value.preventDefault();
   //changes the class to show selection
   let celsiusSelector = document.querySelector("#celsius");
   let farenheitSelector = document.querySelector("#farenheit");
@@ -135,7 +136,8 @@ function convertToF() {
   ).innerHTML = `${next5DayFarenheitMinTemp}°`;
 }
 
-function convertToC() {
+function convertToC(value) {
+  value.preventDefault();
   //changes the class to show selection
   let celsiusSelector = document.querySelector("#celsius");
   let farenheitSelector = document.querySelector("#farenheit");
@@ -184,7 +186,6 @@ function convertToC() {
 // search city or location and give temperature
 
 function giveTemperature(response) {
-  console.log(response);
   //change from empty state to result
 
   document.getElementById("empty-state").style.display = "none";
@@ -388,7 +389,6 @@ function giveTemperature(response) {
 }
 
 function getCoordinates(response) {
-  console.log(response);
   let lat = response.data.coord.lat;
   let lon = response.data.coord.lon;
   let units = "metric";
@@ -401,7 +401,6 @@ function searchCity(event) {
   let newCity = document.querySelector("#search-input");
   if (newCity.value) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity.value}&appid=${apiKey}`;
-    console.log(apiUrl);
     axios
       .get(apiUrl)
       .then(getCoordinates)
@@ -415,7 +414,6 @@ function searchPosition(position) {
   let lon = position.coords.longitude;
   let units = "metric";
   let apiUrl = `${apiEndPoint}?lat=${lat}&lon=${lon}&units=${units}&cnt=6&appid=${apiKey}`;
-  console.log(apiUrl);
   axios
     .get(apiUrl)
     .then(giveTemperature)
