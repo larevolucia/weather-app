@@ -14,6 +14,7 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
+// change layout of last list item on click
 
 document
   .querySelector("#day-5-summary")
@@ -51,6 +52,135 @@ function formatDate(date) {
   return formattedDate;
 }
 
+//change temperature from Celsius and Fahrenheit
+
+function convertToF() {
+  //changes the class to show selection
+  let celsiusSelector = document.querySelector("#celsius");
+  let farenheitSelector = document.querySelector("#farenheit");
+  farenheitSelector.classList.add("unit-selected");
+  celsiusSelector.classList.remove("unit-selected");
+  //changes the values today
+  let todayFarenheitTemp = Math.round((todayCelsiusTemp * 9) / 5 + 32);
+  let todayFeelsFarenheitTemp = Math.round(
+    (todayFeelsCelsiusTemp * 9) / 5 + 32
+  );
+
+  document.querySelector("#current-temp").innerHTML = `${todayFarenheitTemp}°`;
+  document.querySelector(
+    "#feel-temp"
+  ).innerHTML = `Feels like ${todayFeelsFarenheitTemp}°`;
+  //changes the values tomorrow
+
+  let next1DayFarenheitMaxTemp = Math.round(
+    (next1DayCelsiusMaxTemp * 9) / 5 + 32
+  );
+  let next1DayFarenheitMinTemp = Math.round(
+    (next1DayCelsiusMinTemp * 9) / 5 + 32
+  );
+  let next2DayFarenheitMaxTemp = Math.round(
+    (next2DayCelsiusMaxTemp * 9) / 5 + 32
+  );
+  let next2DayFarenheitMinTemp = Math.round(
+    (next2DayCelsiusMinTemp * 9) / 5 + 32
+  );
+  let next3DayFarenheitMaxTemp = Math.round(
+    (next3DayCelsiusMaxTemp * 9) / 5 + 32
+  );
+  let next3DayFarenheitMinTemp = Math.round(
+    (next3DayCelsiusMinTemp * 9) / 5 + 32
+  );
+  let next4DayFarenheitMaxTemp = Math.round(
+    (next4DayCelsiusMaxTemp * 9) / 5 + 32
+  );
+  let next4DayFarenheitMinTemp = Math.round(
+    (next4DayCelsiusMinTemp * 9) / 5 + 32
+  );
+  let next5DayFarenheitMaxTemp = Math.round(
+    (next5DayCelsiusMaxTemp * 9) / 5 + 32
+  );
+  let next5DayFarenheitMinTemp = Math.round(
+    (next5DayCelsiusMinTemp * 9) / 5 + 32
+  );
+
+  document.querySelector(
+    "#max-next-1d"
+  ).innerHTML = `${next1DayFarenheitMaxTemp}°`;
+  document.querySelector(
+    "#min-next-1d"
+  ).innerHTML = `${next1DayFarenheitMinTemp}°`;
+  document.querySelector(
+    "#max-next-2d"
+  ).innerHTML = `${next2DayFarenheitMaxTemp}°`;
+  document.querySelector(
+    "#min-next-2d"
+  ).innerHTML = `${next2DayFarenheitMinTemp}°`;
+  document.querySelector(
+    "#max-next-3d"
+  ).innerHTML = `${next3DayFarenheitMaxTemp}°`;
+  document.querySelector(
+    "#min-next-3d"
+  ).innerHTML = `${next3DayFarenheitMinTemp}°`;
+  document.querySelector(
+    "#max-next-4d"
+  ).innerHTML = `${next4DayFarenheitMaxTemp}°`;
+  document.querySelector(
+    "#min-next-4d"
+  ).innerHTML = `${next4DayFarenheitMinTemp}°`;
+  document.querySelector(
+    "#max-next-5d"
+  ).innerHTML = `${next5DayFarenheitMaxTemp}°`;
+  document.querySelector(
+    "#min-next-5d"
+  ).innerHTML = `${next5DayFarenheitMinTemp}°`;
+}
+
+function convertToC() {
+  //changes the class to show selection
+  let celsiusSelector = document.querySelector("#celsius");
+  let farenheitSelector = document.querySelector("#farenheit");
+  celsiusSelector.classList.add("unit-selected");
+  farenheitSelector.classList.remove("unit-selected");
+  //changes the values
+  document.querySelector("#current-temp").innerHTML = `${Math.round(
+    todayCelsiusTemp
+  )}°`;
+  document.querySelector("#feel-temp").innerHTML = `Feels like ${Math.round(
+    todayFeelsCelsiusTemp
+  )}°`;
+
+  document.querySelector("#max-next-1d").innerHTML = `${Math.round(
+    next1DayCelsiusMaxTemp
+  )}°`;
+  document.querySelector("#min-next-1d").innerHTML = `${Math.round(
+    next1DayCelsiusMinTemp
+  )}°`;
+  document.querySelector("#max-next-2d").innerHTML = `${Math.round(
+    next2DayCelsiusMaxTemp
+  )}°`;
+  document.querySelector("#min-next-2d").innerHTML = `${Math.round(
+    next2DayCelsiusMinTemp
+  )}°`;
+  document.querySelector("#max-next-3d").innerHTML = `${Math.round(
+    next3DayCelsiusMaxTemp
+  )}°`;
+  document.querySelector("#min-next-3d").innerHTML = `${Math.round(
+    next3DayCelsiusMinTemp
+  )}°`;
+  document.querySelector("#max-next-4d").innerHTML = `${Math.round(
+    next4DayCelsiusMaxTemp
+  )}°`;
+  document.querySelector("#min-next-4d").innerHTML = `${Math.round(
+    next4DayCelsiusMinTemp
+  )}°`;
+  document.querySelector("#max-next-5d").innerHTML = `${Math.round(
+    next5DayCelsiusMaxTemp
+  )}°`;
+  document.querySelector("#min-next-5d").innerHTML = `${Math.round(
+    next5DayCelsiusMinTemp
+  )}°`;
+}
+
 // search city or location and give temperature
 
 function giveTemperature(response) {
@@ -62,18 +192,14 @@ function giveTemperature(response) {
   document.getElementById("forecast-5days").style.display = "block";
 
   // current date
-  document.querySelector("#current-temp").innerHTML = `<strong>${Math.round(
-    response.data.list[0].main.temp
-  )}</strong>° C`;
+  todayCelsiusTemp = response.data.list[0].main.temp;
+  todayFeelsCelsiusTemp = response.data.list[0].main.feels_like;
+  document.querySelector("#current-temp").innerHTML = `${Math.round(
+    todayCelsiusTemp
+  )}°`;
   document.querySelector("#feel-temp").innerHTML = `Feels like ${Math.round(
-    response.data.list[0].main.feels_like
-  )}° C`;
-  document.querySelector("#max-today").innerHTML = `${Math.ceil(
-    response.data.list[0].main.temp_max
-  )}° ↑`;
-  document.querySelector("#min-today").innerHTML = `${Math.floor(
-    response.data.list[0].main.temp_min
-  )} ° ↓`;
+    todayFeelsCelsiusTemp
+  )}°`;
   document.querySelector("#summary-today").innerHTML =
     response.data.list[0].weather[0].description;
   document.querySelector(
@@ -100,6 +226,9 @@ function giveTemperature(response) {
     .setAttribute("alt", response.data.list[0].weather[0].main);
   // tomorrow
 
+  next1DayCelsiusMaxTemp = response.data.list[1].main.temp_max;
+  next1DayCelsiusMinTemp = response.data.list[1].main.temp_min;
+
   document.getElementById(
     "icon-next-1d"
   ).src = `img/${response.data.list[1].weather[0].icon.slice(0, -1)}d.png`;
@@ -107,11 +236,11 @@ function giveTemperature(response) {
     .querySelector("#icon-next-1d")
     .setAttribute("alt", response.data.list[1].weather[0].main);
   document.querySelector("#max-next-1d").innerHTML = `${Math.ceil(
-    response.data.list[1].main.temp_max
+    next1DayCelsiusMaxTemp
   )}°`;
   document.querySelector("#min-next-1d").innerHTML = `${Math.floor(
-    response.data.list[1].main.temp_min
-  )} °`;
+    next1DayCelsiusMinTemp
+  )}°`;
   document.querySelector(
     "#rain-next-1d"
   ).innerHTML = `<strong>Chance of rain</strong>: 
@@ -130,6 +259,9 @@ function giveTemperature(response) {
 
   // day 2
 
+  next2DayCelsiusMaxTemp = response.data.list[2].main.temp_max;
+  next2DayCelsiusMinTemp = response.data.list[2].main.temp_min;
+
   document.getElementById(
     "icon-next-2d"
   ).src = `img/${response.data.list[2].weather[0].icon.slice(0, -1)}d.png`;
@@ -137,15 +269,15 @@ function giveTemperature(response) {
     .querySelector("#icon-next-2d")
     .setAttribute("alt", response.data.list[2].weather[0].main);
   document.querySelector("#max-next-2d").innerHTML = `${Math.ceil(
-    response.data.list[2].main.temp_max
+    next2DayCelsiusMaxTemp
   )}°`;
   document.querySelector("#min-next-2d").innerHTML = `${Math.floor(
-    response.data.list[2].main.temp_min
-  )} °`;
+    next2DayCelsiusMinTemp
+  )}°`;
   document.querySelector(
     "#rain-next-2d"
   ).innerHTML = `<strong>Chance of rain</strong>: 
-          ${Math.round(response.data.list[2].pop * 100)}%`;
+    ${Math.round(response.data.list[2].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-2d"
   ).innerHTML = `<strong>Humidity</strong> ${response.data.list[2].main.humidity}%`;
@@ -160,6 +292,8 @@ function giveTemperature(response) {
 
   // day 3
 
+  next3DayCelsiusMaxTemp = response.data.list[3].main.temp_max;
+  next3DayCelsiusMinTemp = response.data.list[3].main.temp_min;
   document.getElementById(
     "icon-next-3d"
   ).src = `img/${response.data.list[3].weather[0].icon.slice(0, -1)}d.png`;
@@ -167,15 +301,15 @@ function giveTemperature(response) {
     .querySelector("#icon-next-3d")
     .setAttribute("alt", response.data.list[3].weather[0].main);
   document.querySelector("#max-next-3d").innerHTML = `${Math.ceil(
-    response.data.list[3].main.temp_max
+    next3DayCelsiusMaxTemp
   )}°`;
   document.querySelector("#min-next-3d").innerHTML = `${Math.floor(
-    response.data.list[3].main.temp_min
-  )} °`;
+    next3DayCelsiusMinTemp
+  )}°`;
   document.querySelector(
     "#rain-next-3d"
   ).innerHTML = `<strong>Chance of rain</strong>: 
-          ${Math.round(response.data.list[3].pop * 100)}%`;
+              ${Math.round(response.data.list[3].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-3d"
   ).innerHTML = `<strong>Humidity</strong> ${response.data.list[3].main.humidity}%`;
@@ -190,6 +324,8 @@ function giveTemperature(response) {
 
   // day 4
 
+  next4DayCelsiusMaxTemp = response.data.list[4].main.temp_max;
+  next4DayCelsiusMinTemp = response.data.list[4].main.temp_min;
   document.getElementById(
     "icon-next-4d"
   ).src = `img/${response.data.list[4].weather[0].icon.slice(0, -1)}d.png`;
@@ -197,15 +333,15 @@ function giveTemperature(response) {
     .querySelector("#icon-next-4d")
     .setAttribute("alt", response.data.list[4].weather[0].main);
   document.querySelector("#max-next-4d").innerHTML = `${Math.ceil(
-    response.data.list[4].main.temp_max
+    next4DayCelsiusMaxTemp
   )}°`;
   document.querySelector("#min-next-4d").innerHTML = `${Math.floor(
-    response.data.list[4].main.temp_min
-  )} °`;
+    next4DayCelsiusMinTemp
+  )}°`;
   document.querySelector(
     "#rain-next-4d"
   ).innerHTML = `<strong>Chance of rain</strong>: 
-          ${Math.round(response.data.list[4].pop * 100)}%`;
+      ${Math.round(response.data.list[4].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-4d"
   ).innerHTML = `<strong>Humidity</strong> ${response.data.list[4].main.humidity}%`;
@@ -219,6 +355,8 @@ function giveTemperature(response) {
   ).innerHTML = `<strong>Pressure</strong> ${response.data.list[4].main.pressure}mb`;
 
   // day 5
+  next5DayCelsiusMaxTemp = response.data.list[5].main.temp_max;
+  next5DayCelsiusMinTemp = response.data.list[5].main.temp_min;
 
   document.getElementById(
     "icon-next-5d"
@@ -227,15 +365,15 @@ function giveTemperature(response) {
     .querySelector("#icon-next-5d")
     .setAttribute("alt", response.data.list[5].weather[0].main);
   document.querySelector("#max-next-5d").innerHTML = `${Math.ceil(
-    response.data.list[5].main.temp_max
+    next5DayCelsiusMaxTemp
   )}°`;
   document.querySelector("#min-next-5d").innerHTML = `${Math.floor(
-    response.data.list[5].main.temp_min
-  )} °`;
+    next5DayCelsiusMinTemp
+  )}°`;
   document.querySelector(
     "#rain-next-5d"
   ).innerHTML = `<strong>Chance of rain</strong>: 
-          ${Math.round(response.data.list[5].pop * 100)}%`;
+        ${Math.round(response.data.list[5].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-5d"
   ).innerHTML = `<strong>Humidity</strong> ${response.data.list[5].main.humidity}%`;
@@ -333,6 +471,21 @@ fiveDays.setDate(fiveDays.getDate() + 5);
 let dayFive = document.querySelector("#next-5d");
 dayFive.innerHTML = formatDate(fiveDays);
 
+// temperatures
+
+let todayCelsiusTemp = null;
+let todayFeelsCelsiusTemp = null;
+let next1DayCelsiusMaxTemp = null;
+let next1DayCelsiusMinTemp = null;
+let next2DayCelsiusMaxTemp = null;
+let next2DayCelsiusMinTemp = null;
+let next3DayCelsiusMaxTemp = null;
+let next3DayCelsiusMinTemp = null;
+let next4DayCelsiusMaxTemp = null;
+let next4DayCelsiusMinTemp = null;
+let next5DayCelsiusMaxTemp = null;
+let next5DayCelsiusMinTemp = null;
+
 // event listeners
 
 let searchInput = document.querySelector("#search-form");
@@ -343,3 +496,9 @@ locationButton.addEventListener("click", getLocation);
 
 let today = document.querySelector("#current-date");
 today.innerHTML = formatDateTime(now);
+
+let celsiusButton = document.querySelector("#celsius");
+celsiusButton.addEventListener("click", convertToC);
+
+let farenheitLink = document.querySelector("#farenheit");
+farenheitLink.addEventListener("click", convertToF);

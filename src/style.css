@@ -76,28 +76,51 @@ footer {
   text-align: center;
   margin: 4px 0;
 }
+.min,
+.max {
+  font-weight: bold;
+}
+.max {
+  color: #0d6efd;
+}
+.min {
+  color: #8ab8fd;
+}
 .temperatur {
   text-align: center;
   font-size: 44px;
   margin: 0 0 8px 0;
   font-weight: 700;
 }
-/*.temp-unit {
+.units {
+  position: relative;
+  margin-top: -70px;
+  margin-left: 71px;
+  margin-bottom: 42px;
+}
+.temp-unit {
   font-size: 20px;
-  vertical-align: super;
   padding: 0;
   margin: 0;
   border: none;
   background: none;
-}
-.unit-selected {
   color: #0d6efd;
   font-weight: 700;
-}*/
+  text-decoration: none;
+}
+.unit-selected {
+  font-weight: 400;
+  color: inherit;
+}
+.unit-selected:hover {
+  cursor: default;
+  color: inherit;
+}
 .summary-today {
   text-align: center;
   font-size: 14px;
   margin-top: 0;
+  text-transform: capitalize;
 }
 .today-conditions {
   list-style: none;

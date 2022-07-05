@@ -78,11 +78,17 @@
                 <img class="weather-icon" id="weather-icon" src="#" alt="" />
                 <p class="summary-today" id="summary-today"></p>
               </div>
-              <div class="col-5">
-                <p class="min-max">
-                  <span id="max-today"></span> |<span id="min-today"></span>
+              <div class="col-5 m-3">
+                <p>
+                  <span class="temperatur" id="current-temp"></span>
                 </p>
-                <p class="temperatur" id="current-temp"></p>
+                <div class="clearfix units">
+                  <a href="#" class="temp-unit unit-selected" id="celsius">
+                    C
+                  </a>
+                  <sup>|</sup>
+                  <a href="#" class="temp-unit" id="farenheit">F</a>
+                </div>
                 <p class="summary-today" id="feel-temp"></p>
               </div>
             </div>
