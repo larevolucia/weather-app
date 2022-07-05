@@ -26,64 +26,59 @@
   </head>
   <body>
     <div class="container">
-      <h1>Weather App</h1>
-      <div class="row justify-content-center">
-        <div class="col-sm-4 m-1 weather-today">
+      <div class="wrapper p-4">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <form class="d-flex" role="search" id="search-form">
+              <input
+                class="form-control me-1 mw-60"
+                type="search"
+                placeholder="Enter a city"
+                aria-label="Search"
+                id="search-input"
+              />
+              <input class="btn btn-primary m-1" type="submit" value="Search" />
+              <button
+                id="location-button"
+                type="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip"
+                title="Use current location"
+                class="btn btn-primary m-1"
+              >
+                <i class="fa-solid fa-location-dot"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="empty-state" id="empty-state">
           <div class="row">
             <div class="col-12">
-              <form class="d-flex" role="search" id="search-form">
-                <input
-                  class="form-control me-1"
-                  type="search"
-                  placeholder="Enter a city"
-                  aria-label="Search"
-                  id="search-input"
-                />
-                <input
-                  class="btn btn-primary m-1"
-                  type="submit"
-                  value="Search"
-                />
-                <button
-                  id="location-button"
-                  type="button"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="bottom"
-                  data-bs-custom-class="custom-tooltip"
-                  title="Use current location"
-                  class="btn btn-primary m-1"
-                >
-                  <i class="fa-solid fa-location-dot"></i>
-                </button>
-              </form>
+              <h2>Search for a city to get started</h2>
+              <img
+                class="empty-state-img"
+                src="img/weather_monochromatic.svg"
+                alt="Weather Forecast"
+              />
             </div>
           </div>
+        </div>
 
-          <div class="empty-state" id="empty-state">
-            <div class="row">
-              <div class="col-12">
-                <h2>Search for a city to get started</h2>
-                <img
-                  class="empty-state-img"
-                  src="img/weather_monochromatic.svg"
-                  alt="Weather Forecast"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="weather-result" id="weather-result">
-            <div class="row">
-              <div class="col-12">
+        <div class="row">
+          <div class="col m-1 weather-result" id="weather-today">
+            <div class="row justify-content-center">
+              <div class="col-6 m-4">
                 <p class="city" id="current-city"></p>
                 <p class="date" id="current-date"></p>
               </div>
             </div>
-            <div class="row clearfix">
-              <div class="col-6 float-left">
+            <div class="row justify-content-center">
+              <div class="col-5">
                 <img class="weather-icon" id="weather-icon" src="#" alt="" />
                 <p class="summary-today" id="summary-today"></p>
               </div>
-              <div class="col-6 float-left">
+              <div class="col-5">
                 <p class="min-max">
                   <span id="max-today"></span> |<span id="min-today"></span>
                 </p>
@@ -91,156 +86,156 @@
                 <p class="summary-today" id="feel-temp"></p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-6 mt-4">
+            <div class="row mb-3">
+              <div class="col-6">
                 <p class="today-details" id="rain-today"></p>
                 <p class="today-details" id="humidity-today"></p>
               </div>
-              <div class="col-6 mt-4">
+              <div class="col-6">
                 <p class="today-details" id="wind-today"></p>
                 <p class="today-details" id="pressure-today"></p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-12 m-1 prediction-5-days">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item collapsible">
-                    <div class="row next-5-days">
-                      <div class="col-6">
-                        <p class="next-1-day" id="next-1d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="temp-next-1d">
-                          <img id="icon-next-1d" src="#" width="30" alt="" />
-                          <span class="temp" id="max-next-1d"></span> |
-                          <span class="temp" id="min-next-1d"></span>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item extra-details">
-                    <div class="row details-next-1-day">
-                      <div class="col-6">
-                        <p class="weather-details" id="rain-next-1d"></p>
-                        <p class="weather-details" id="humidity-next-1d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="weather-details" id="wind-next-1d"></p>
-                        <p class="weather-details" id="pressure-next-1d"></p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item collapsible">
-                    <div class="row next-5-days">
-                      <div class="col-6">
-                        <p class="next-2-day" id="next-2d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="temp-next-2d">
-                          <img id="icon-next-2d" src="#" width="30" alt="" />
-                          <span class="temp" id="max-next-2d"></span> |
-                          <span class="temp" id="min-next-2d"></span>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item extra-details">
-                    <div class="row details-next-5-days">
-                      <div class="col-6">
-                        <p class="weather-details" id="rain-next-2d"></p>
-                        <p class="weather-details" id="humidity-next-2d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="weather-details" id="wind-next-2d"></p>
-                        <p class="weather-details" id="pressure-next-2d"></p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item collapsible">
-                    <div class="row next-5-days">
-                      <div class="col-6">
-                        <p class="next-3-day" id="next-3d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="temp-next-3d">
-                          <img id="icon-next-3d" src="#" width="30" alt="" />
-                          <span class="temp" id="max-next-3d"></span> |
-                          <span class="temp" id="min-next-3d"></span>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item extra-details">
-                    <div class="row details-next-5-days">
-                      <div class="col-6">
-                        <p class="weather-details" id="rain-next-3d"></p>
-                        <p class="weather-details" id="humidity-next-3d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="weather-details" id="wind-next-3d"></p>
-                        <p class="weather-details" id="pressure-next-3d"></p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item collapsible">
-                    <div class="row next-days">
-                      <div class="col-6">
-                        <p class="next-4-day" id="next-4d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="temp-next-4d">
-                          <img id="icon-next-4d" src="#" width="30" alt="" />
-                          <span class="temp" id="max-next-4d"></span> |
-                          <span class="temp" id="min-next-4d"></span>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item extra-details">
-                    <div class="row details-next-5-days">
-                      <div class="col-6">
-                        <p class="weather-details" id="rain-next-4d"></p>
-                        <p class="weather-details" id="humidity-next-4d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="weather-details" id="wind-next-4d"></p>
-                        <p class="weather-details" id="pressure-next-4d"></p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item collapsible border-0">
-                    <div class="row next-5-days">
-                      <div class="col-6">
-                        <p class="next-5-day" id="next-5d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="temp-next-5d">
-                          <img id="icon-next-5d" src="#" width="30" alt="" />
-                          <span class="temp" id="max-next-5d"></span> |
-                          <span class="temp" id="min-next-5d"></span>
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="list-group-item extra-details">
-                    <div class="row details-next-5-days">
-                      <div class="col-6">
-                        <p class="weather-details" id="rain-next-5d"></p>
-                        <p class="weather-details" id="humidity-next-5d"></p>
-                      </div>
-                      <div class="col-6">
-                        <p class="weather-details" id="wind-next-5d"></p>
-                        <p class="weather-details" id="pressure-next-5d"></p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          </div>
+          <div class="col-sm-6 weather-result" id="forecast-5days">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item collapsible rounded-top">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="next-1-day" id="next-1d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="temp-next-1d">
+                      <img id="icon-next-1d" src="#" width="30" alt="" />
+                      <span class="temp" id="max-next-1d"></span> |
+                      <span class="temp" id="min-next-1d"></span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item extra-details">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="weather-details" id="rain-next-1d"></p>
+                    <p class="weather-details" id="humidity-next-1d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="weather-details" id="wind-next-1d"></p>
+                    <p class="weather-details" id="pressure-next-1d"></p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item collapsible">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="next-2-day" id="next-2d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="temp-next-2d">
+                      <img id="icon-next-2d" src="#" width="30" alt="" />
+                      <span class="temp" id="max-next-2d"></span> |
+                      <span class="temp" id="min-next-2d"></span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item extra-details">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="weather-details" id="rain-next-2d"></p>
+                    <p class="weather-details" id="humidity-next-2d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="weather-details" id="wind-next-2d"></p>
+                    <p class="weather-details" id="pressure-next-2d"></p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item collapsible">
+                <div class="row next-5-days">
+                  <div class="col-6">
+                    <p class="next-3-day" id="next-3d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="temp-next-3d">
+                      <img id="icon-next-3d" src="#" width="30" alt="" />
+                      <span class="temp" id="max-next-3d"></span> |
+                      <span class="temp" id="min-next-3d"></span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item extra-details">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="weather-details" id="rain-next-3d"></p>
+                    <p class="weather-details" id="humidity-next-3d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="weather-details" id="wind-next-3d"></p>
+                    <p class="weather-details" id="pressure-next-3d"></p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item collapsible">
+                <div class="row next-days">
+                  <div class="col-6">
+                    <p class="next-4-day" id="next-4d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="temp-next-4d">
+                      <img id="icon-next-4d" src="#" width="30" alt="" />
+                      <span class="temp" id="max-next-4d"></span> |
+                      <span class="temp" id="min-next-4d"></span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item extra-details">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="weather-details" id="rain-next-4d"></p>
+                    <p class="weather-details" id="humidity-next-4d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="weather-details" id="wind-next-4d"></p>
+                    <p class="weather-details" id="pressure-next-4d"></p>
+                  </div>
+                </div>
+              </li>
+              <li
+                class="list-group-item collapsible rounded-bottom border-0"
+                id="day-5-summary"
+              >
+                <div class="row next-5-days">
+                  <div class="col-6">
+                    <p class="next-5-day" id="next-5d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="temp-next-5d">
+                      <img id="icon-next-5d" src="#" width="30" alt="" />
+                      <span class="temp" id="max-next-5d"></span> |
+                      <span class="temp" id="min-next-5d"></span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item extra-details" id="day-5-details">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="weather-details" id="rain-next-5d"></p>
+                    <p class="weather-details" id="humidity-next-5d"></p>
+                  </div>
+                  <div class="col-6">
+                    <p class="weather-details" id="wind-next-5d"></p>
+                    <p class="weather-details" id="pressure-next-5d"></p>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-
       <footer>
         <div>
           <a href="https://github.com/larevolucia/weather-app.git"

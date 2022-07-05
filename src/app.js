@@ -15,6 +15,18 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+document
+  .querySelector("#day-5-summary")
+  .addEventListener("click", function (event) {
+    if (document.querySelector("#day-5-details").style.display === "block") {
+      document
+        .querySelector("#day-5-summary")
+        .classList.remove("rounded-bottom");
+    } else {
+      document.querySelector("#day-5-summary").classList.add("rounded-bottom");
+    }
+  });
+
 //format and present current date and time
 
 function formatDateTime(date) {
@@ -46,7 +58,8 @@ function giveTemperature(response) {
   //change from empty state to result
 
   document.getElementById("empty-state").style.display = "none";
-  document.getElementById("weather-result").style.display = "block";
+  document.getElementById("weather-today").style.display = "block";
+  document.getElementById("forecast-5days").style.display = "block";
 
   // current date
   document.querySelector("#current-temp").innerHTML = `<strong>${Math.round(
@@ -55,17 +68,17 @@ function giveTemperature(response) {
   document.querySelector("#feel-temp").innerHTML = `Feels like ${Math.round(
     response.data.list[0].main.feels_like
   )}° C`;
-  document.querySelector("#max-today").innerHTML = `${Math.round(
+  document.querySelector("#max-today").innerHTML = `${Math.ceil(
     response.data.list[0].main.temp_max
   )}° ↑`;
-  document.querySelector("#min-today").innerHTML = `${Math.round(
+  document.querySelector("#min-today").innerHTML = `${Math.floor(
     response.data.list[0].main.temp_min
   )} ° ↓`;
   document.querySelector("#summary-today").innerHTML =
     response.data.list[0].weather[0].description;
   document.querySelector(
     "#rain-today"
-  ).innerHTML = `<strong>Precipitation</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong>: 
             ${Math.round(response.data.list[0].pop * 100)}%`;
   document.querySelector(
     "#humidity-today"
@@ -79,24 +92,29 @@ function giveTemperature(response) {
     "#pressure-today"
   ).innerHTML = `<strong>Pressure</strong> ${response.data.list[0].main.pressure}mb`;
   document.querySelector("#current-city").innerHTML = response.data.city.name;
-  document.getElementById(
-    "weather-icon"
-  ).src = `img/${response.data.list[0].weather[0].icon}.png`;
-
+  document
+    .querySelector("#weather-icon")
+    .setAttribute("src", `img/${response.data.list[0].weather[0].icon}.png`);
+  document
+    .querySelector("#weather-icon")
+    .setAttribute("alt", response.data.list[0].weather[0].main);
   // tomorrow
 
   document.getElementById(
     "icon-next-1d"
   ).src = `img/${response.data.list[1].weather[0].icon.slice(0, -1)}d.png`;
-  document.querySelector("#max-next-1d").innerHTML = `${Math.round(
+  document
+    .querySelector("#icon-next-1d")
+    .setAttribute("alt", response.data.list[1].weather[0].main);
+  document.querySelector("#max-next-1d").innerHTML = `${Math.ceil(
     response.data.list[1].main.temp_max
   )}°`;
-  document.querySelector("#min-next-1d").innerHTML = `${Math.round(
+  document.querySelector("#min-next-1d").innerHTML = `${Math.floor(
     response.data.list[1].main.temp_min
   )} °`;
   document.querySelector(
     "#rain-next-1d"
-  ).innerHTML = `<strong>Precipitation</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong>: 
           ${Math.round(response.data.list[1].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-1d"
@@ -115,15 +133,18 @@ function giveTemperature(response) {
   document.getElementById(
     "icon-next-2d"
   ).src = `img/${response.data.list[2].weather[0].icon.slice(0, -1)}d.png`;
-  document.querySelector("#max-next-2d").innerHTML = `${Math.round(
+  document
+    .querySelector("#icon-next-2d")
+    .setAttribute("alt", response.data.list[2].weather[0].main);
+  document.querySelector("#max-next-2d").innerHTML = `${Math.ceil(
     response.data.list[2].main.temp_max
   )}°`;
-  document.querySelector("#min-next-2d").innerHTML = `${Math.round(
+  document.querySelector("#min-next-2d").innerHTML = `${Math.floor(
     response.data.list[2].main.temp_min
   )} °`;
   document.querySelector(
     "#rain-next-2d"
-  ).innerHTML = `<strong>Precipitation</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong>: 
           ${Math.round(response.data.list[2].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-2d"
@@ -142,15 +163,18 @@ function giveTemperature(response) {
   document.getElementById(
     "icon-next-3d"
   ).src = `img/${response.data.list[3].weather[0].icon.slice(0, -1)}d.png`;
-  document.querySelector("#max-next-3d").innerHTML = `${Math.round(
+  document
+    .querySelector("#icon-next-3d")
+    .setAttribute("alt", response.data.list[3].weather[0].main);
+  document.querySelector("#max-next-3d").innerHTML = `${Math.ceil(
     response.data.list[3].main.temp_max
   )}°`;
-  document.querySelector("#min-next-3d").innerHTML = `${Math.round(
+  document.querySelector("#min-next-3d").innerHTML = `${Math.floor(
     response.data.list[3].main.temp_min
   )} °`;
   document.querySelector(
     "#rain-next-3d"
-  ).innerHTML = `<strong>Precipitation</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong>: 
           ${Math.round(response.data.list[3].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-3d"
@@ -169,15 +193,18 @@ function giveTemperature(response) {
   document.getElementById(
     "icon-next-4d"
   ).src = `img/${response.data.list[4].weather[0].icon.slice(0, -1)}d.png`;
-  document.querySelector("#max-next-4d").innerHTML = `${Math.round(
+  document
+    .querySelector("#icon-next-4d")
+    .setAttribute("alt", response.data.list[4].weather[0].main);
+  document.querySelector("#max-next-4d").innerHTML = `${Math.ceil(
     response.data.list[4].main.temp_max
   )}°`;
-  document.querySelector("#min-next-4d").innerHTML = `${Math.round(
+  document.querySelector("#min-next-4d").innerHTML = `${Math.floor(
     response.data.list[4].main.temp_min
   )} °`;
   document.querySelector(
     "#rain-next-4d"
-  ).innerHTML = `<strong>Precipitation</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong>: 
           ${Math.round(response.data.list[4].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-4d"
@@ -196,15 +223,18 @@ function giveTemperature(response) {
   document.getElementById(
     "icon-next-5d"
   ).src = `img/${response.data.list[5].weather[0].icon.slice(0, -1)}d.png`;
-  document.querySelector("#max-next-5d").innerHTML = `${Math.round(
+  document
+    .querySelector("#icon-next-5d")
+    .setAttribute("alt", response.data.list[5].weather[0].main);
+  document.querySelector("#max-next-5d").innerHTML = `${Math.ceil(
     response.data.list[5].main.temp_max
   )}°`;
-  document.querySelector("#min-next-5d").innerHTML = `${Math.round(
+  document.querySelector("#min-next-5d").innerHTML = `${Math.floor(
     response.data.list[5].main.temp_min
   )} °`;
   document.querySelector(
     "#rain-next-5d"
-  ).innerHTML = `<strong>Precipitation</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong>: 
           ${Math.round(response.data.list[5].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-5d"

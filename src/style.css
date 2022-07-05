@@ -20,13 +20,15 @@ p {
 form {
   margin-bottom: 30px;
 }
-ul {
-  margin-top: 24px;
+ul,
+li {
+  margin: 0;
 }
 footer {
   text-align: center;
   font-family: "Courier New", Courier, monospace;
   font-size: small;
+  margin-top: 12px;
 }
 /*.gradient {
   background: #e7f0fd;
@@ -113,10 +115,6 @@ footer {
 /*next 5 days*/
 .weather-details {
   margin: 8px 0 12px 0;
-}
-.prediction-5-days {
-  margin: 0;
-  padding: 0;
 }
 
 .next-1-day,
