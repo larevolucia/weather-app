@@ -16,6 +16,7 @@ h2 {
 }
 p {
   line-height: 1.5;
+  margin: 0;
 }
 form {
   margin-bottom: 30px;
@@ -23,6 +24,7 @@ form {
 ul,
 li {
   margin: 0;
+  padding: 10px 20px;
 }
 footer {
   text-align: center;
@@ -89,7 +91,7 @@ footer {
 .temperatur {
   text-align: center;
   font-size: 44px;
-  margin: 0 0 8px 0;
+  margin: 0;
   font-weight: 700;
 }
 .units {
@@ -116,10 +118,13 @@ footer {
   cursor: default;
   color: inherit;
 }
+.feel-temp-today,
 .summary-today {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 0;
+  text-align: left;
+  font-size: 12px;
+  margin: 0;
+}
+.summary-today {
   text-transform: capitalize;
 }
 .today-conditions {

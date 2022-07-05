@@ -36,6 +36,7 @@
                 placeholder="Enter a city"
                 aria-label="Search"
                 id="search-input"
+                autocomplete="off"
               />
               <input class="btn btn-primary m-1" type="submit" value="Search" />
               <button
@@ -75,10 +76,14 @@
             </div>
             <div class="row justify-content-center">
               <div class="col-5">
-                <img class="weather-icon" id="weather-icon" src="#" alt="" />
-                <p class="summary-today" id="summary-today"></p>
+                <img
+                  class="weather-icon float-end"
+                  id="weather-icon"
+                  src="#"
+                  alt=""
+                />
               </div>
-              <div class="col-5 m-3">
+              <div class="col-5 m-2">
                 <p>
                   <span class="temperatur" id="current-temp"></span>
                 </p>
@@ -89,10 +94,11 @@
                   <sup>|</sup>
                   <a href="#" class="temp-unit" id="farenheit">F</a>
                 </div>
-                <p class="summary-today" id="feel-temp"></p>
+                <p class="summary-today" id="summary-today"></p>
+                <p class="feel-temp-today" id="feel-temp"></p>
               </div>
             </div>
-            <div class="row mb-3">
+            <div class="row m-3">
               <div class="col-6">
                 <p class="today-details" id="rain-today"></p>
                 <p class="today-details" id="humidity-today"></p>
@@ -103,7 +109,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6 weather-result" id="forecast-5days">
+          <div class="col-sm-6 mt-3 weather-result" id="forecast-5days">
             <ul class="list-group list-group-flush">
               <li class="list-group-item collapsible rounded-top">
                 <div class="row">

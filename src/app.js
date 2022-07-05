@@ -204,7 +204,7 @@ function giveTemperature(response) {
     response.data.list[0].weather[0].description;
   document.querySelector(
     "#rain-today"
-  ).innerHTML = `<strong>Chance of rain</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong> 
             ${Math.round(response.data.list[0].pop * 100)}%`;
   document.querySelector(
     "#humidity-today"
@@ -243,7 +243,7 @@ function giveTemperature(response) {
   )}°`;
   document.querySelector(
     "#rain-next-1d"
-  ).innerHTML = `<strong>Chance of rain</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong> 
           ${Math.round(response.data.list[1].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-1d"
@@ -276,7 +276,7 @@ function giveTemperature(response) {
   )}°`;
   document.querySelector(
     "#rain-next-2d"
-  ).innerHTML = `<strong>Chance of rain</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong> 
     ${Math.round(response.data.list[2].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-2d"
@@ -308,7 +308,7 @@ function giveTemperature(response) {
   )}°`;
   document.querySelector(
     "#rain-next-3d"
-  ).innerHTML = `<strong>Chance of rain</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong> 
               ${Math.round(response.data.list[3].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-3d"
@@ -340,7 +340,7 @@ function giveTemperature(response) {
   )}°`;
   document.querySelector(
     "#rain-next-4d"
-  ).innerHTML = `<strong>Chance of rain</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong> 
       ${Math.round(response.data.list[4].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-4d"
@@ -372,7 +372,7 @@ function giveTemperature(response) {
   )}°`;
   document.querySelector(
     "#rain-next-5d"
-  ).innerHTML = `<strong>Chance of rain</strong>: 
+  ).innerHTML = `<strong>Chance of rain</strong> 
         ${Math.round(response.data.list[5].pop * 100)}%`;
   document.querySelector(
     "#humidity-next-5d"
