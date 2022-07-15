@@ -158,6 +158,7 @@ footer {
 
 .extra-details {
   display: none;
+  transition: all 150ms ease-in-out;
 }
 .collapsible {
   cursor: pointer;
@@ -169,7 +170,17 @@ footer {
   color: #000;
   border-color: rgba(0, 0, 0, 0.125);
 }
+.active {
+  transition: all 200ms ease-in-out;
+}
 .active:hover {
   background-color: #0359d9;
   color: #fff;
+}
+.max-forecast,
+.min-forecast {
+  font-weight: 700;
+}
+.min-forecast {
+  opacity: 0.75;
 }

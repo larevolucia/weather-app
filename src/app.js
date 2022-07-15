@@ -1,3 +1,38 @@
+// collapse and expand forecast
+
+function collapse() {
+  let coll = document.getElementsByClassName("collapsible");
+  let i;
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      let details = this.nextElementSibling;
+      if (details.style.display === "block") {
+        details.style.display = "none";
+      } else {
+        details.style.display = "block";
+      }
+    });
+  }
+  formatTable();
+}
+
+function formatTable() {
+  document
+    .querySelector("#day-5-summary")
+    .addEventListener("click", function (event) {
+      if (document.querySelector("#day-5-details").style.display === "block") {
+        document
+          .querySelector("#day-5-summary")
+          .classList.remove("rounded-bottom");
+      } else {
+        document
+          .querySelector("#day-5-summary")
+          .classList.add("rounded-bottom");
+      }
+    });
+}
+
 //format and present current date and time
 
 function formatDateTime(date) {
@@ -26,27 +61,53 @@ function formatDay(timestamp) {
 function convertToF(value) {
   value.preventDefault();
   //changes the class to show selection
-  let celsiusSelector = document.querySelector("#celsius");
-  let farenheitSelector = document.querySelector("#farenheit");
   farenheitSelector.classList.add("unit-selected");
   celsiusSelector.classList.remove("unit-selected");
   //changes the values today
-  let todayFarenheitTemp = Math.round((todayCelsiusTemp * 9) / 5 + 32);
-  let todayFeelsFarenheitTemp = Math.round(
-    (todayFeelsCelsiusTemp * 9) / 5 + 32
-  );
 
-  document.querySelector("#current-temp").innerHTML = `${todayFarenheitTemp}°`;
-  document.querySelector(
-    "#feel-temp"
-  ).innerHTML = `Feels like ${todayFeelsFarenheitTemp}°`;
+  document.querySelector("#current-temp").innerHTML = `${Math.round(
+    (todayCelsiusTemp * 9) / 5 + 32
+  )}°`;
+  document.querySelector("#feel-temp").innerHTML = `Feels like ${Math.round(
+    (todayFeelsCelsiusTemp * 9) / 5 + 32
+  )}°`;
+  //changes forecast values
+  document.querySelector("#max-temp-1").innerHTML = Math.round(
+    (maxTemp1C * 9) / 5 + 32
+  );
+  document.querySelector("#min-temp-1").innerHTML = Math.round(
+    (minTemp1C * 9) / 5 + 32
+  );
+  document.querySelector("#max-temp-2").innerHTML = Math.round(
+    (maxTemp2C * 9) / 5 + 32
+  );
+  document.querySelector("#min-temp-2").innerHTML = Math.round(
+    (minTemp2C * 9) / 5 + 32
+  );
+  document.querySelector("#max-temp-3").innerHTML = Math.round(
+    (maxTemp3C * 9) / 5 + 32
+  );
+  document.querySelector("#min-temp-3").innerHTML = Math.round(
+    (minTemp3C * 9) / 5 + 32
+  );
+  document.querySelector("#max-temp-4").innerHTML = Math.round(
+    (maxTemp4C * 9) / 5 + 32
+  );
+  document.querySelector("#min-temp-4").innerHTML = Math.round(
+    (minTemp4C * 9) / 5 + 32
+  );
+  document.querySelector("#max-temp-5").innerHTML = Math.round(
+    (maxTemp5C * 9) / 5 + 32
+  );
+  document.querySelector("#min-temp-5").innerHTML = Math.round(
+    (minTemp5C * 9) / 5 + 32
+  );
 }
 
 function convertToC(value) {
   value.preventDefault();
   //changes the class to show selection
-  let celsiusSelector = document.querySelector("#celsius");
-  let farenheitSelector = document.querySelector("#farenheit");
+
   celsiusSelector.classList.add("unit-selected");
   farenheitSelector.classList.remove("unit-selected");
   //changes the values
@@ -56,6 +117,16 @@ function convertToC(value) {
   document.querySelector("#feel-temp").innerHTML = `Feels like ${Math.round(
     todayFeelsCelsiusTemp
   )}°`;
+  document.querySelector("#max-temp-1").innerHTML = maxTemp1C;
+  document.querySelector("#min-temp-1").innerHTML = minTemp1C;
+  document.querySelector("#max-temp-2").innerHTML = maxTemp2C;
+  document.querySelector("#min-temp-2").innerHTML = minTemp2C;
+  document.querySelector("#max-temp-3").innerHTML = maxTemp3C;
+  document.querySelector("#min-temp-3").innerHTML = minTemp3C;
+  document.querySelector("#max-temp-4").innerHTML = maxTemp4C;
+  document.querySelector("#min-temp-4").innerHTML = minTemp4C;
+  document.querySelector("#max-temp-5").innerHTML = maxTemp5C;
+  document.querySelector("#min-temp-5").innerHTML = minTemp5C;
 }
 
 // search city or location and give temperature
@@ -64,17 +135,28 @@ function displayForecast(response) {
 
   let forecast = response.data.daily;
 
+  maxTemp1C = Math.ceil(forecast[1].temp.max);
+  minTemp1C = Math.floor(forecast[1].temp.min);
+  maxTemp2C = Math.ceil(forecast[2].temp.max);
+  minTemp2C = Math.floor(forecast[2].temp.min);
+  maxTemp3C = Math.ceil(forecast[3].temp.max);
+  minTemp3C = Math.floor(forecast[3].temp.min);
+  maxTemp4C = Math.ceil(forecast[4].temp.max);
+  minTemp4C = Math.floor(forecast[4].temp.min);
+  maxTemp5C = Math.ceil(forecast[5].temp.max);
+  minTemp5C = Math.floor(forecast[5].temp.min);
+
   document.querySelector(
     "#rain-today"
   ).innerHTML = `<strong>Chance of rain</strong> ${forecast[0].pop * 100}%`;
 
-  let forecastHTML = `<ul class="list-group rounded-0">`;
+  let forecastHTML = `<ul class="list-group">`;
 
   forecast.forEach(function (forecastDay, index) {
     if (index > 0 && index < 6) {
       forecastHTML =
         forecastHTML +
-        `<li class="list-group-item collapsible">
+        `<li class="list-group-item collapsible" id="day-${index}-summary">
            <div class="row">
              <div class="col-6">
                <p class="next-days" id="next-1d"><strong>${formatDay(
@@ -88,17 +170,17 @@ function displayForecast(response) {
                    }.png" width="30" alt="${
           forecast[index].weather[0].description
         }" />
-                   <span class="max-forecast">${Math.ceil(
-                     forecast[index].temp.max
-                   )}°</span> |
-                   <span class="min-forecast">${Math.floor(
-                     forecast[index].temp.min
-                   )}°</span>
+                   <span class="max-forecast" id="max-temp-${index}">${Math.ceil(
+          forecast[index].temp.max
+        )}</span>°
+                   <span class="min-forecast" id="min-temp-${index}">${Math.floor(
+          forecast[index].temp.min
+        )}</span>°
                  </p>
              </div>
            </div>
          </li>
-         <li class="list-group-item extra-details">
+         <li class="list-group-item extra-details" id="day-${index}-details">
            <div class="row">
                <div class="col-6">
                  <p class="weather-details"><strong>Chance of rain</strong> ${
@@ -126,24 +208,17 @@ function displayForecast(response) {
   document.querySelector("#forecast-5days").innerHTML = forecastHTML;
 
   // collapse expand
+  collapse();
 
-  let coll = document.getElementsByClassName("collapsible");
-  let i;
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function () {
-      this.classList.toggle("active");
-      let details = this.nextElementSibling;
-      if (details.style.display === "block") {
-        details.style.display = "none";
-      } else {
-        details.style.display = "block";
-      }
-    });
-  }
+  // table format
+  document.querySelector("#day-5-summary").classList.add("rounded-bottom");
 }
 function getTemperature(response) {
   //change from empty state to result
   console.log(response);
+
+  celsiusSelector.classList.add("unit-selected");
+  farenheitSelector.classList.remove("unit-selected");
 
   todayCelsiusTemp = Math.round(response.data.main.temp);
   todayFeelsCelsiusTemp = Math.round(response.data.main.feels_like);
@@ -188,7 +263,6 @@ function getTemperature(response) {
 
 function searchCity(city) {
   let searchInput = city;
-  debugger;
   let apiUrl = `${apiWeatherEndPoint}?q=${searchInput}&units=metric&appid=${apiKeyWeather}`;
   console.log(apiUrl);
   axios.get(apiUrl).then(getTemperature);
@@ -232,6 +306,19 @@ let now = new Date();
 
 let todayCelsiusTemp = null;
 let todayFeelsCelsiusTemp = null;
+let maxTemp1C = null;
+let minTemp1C = null;
+let maxTemp2C = null;
+let minTemp2C = null;
+let maxTemp3C = null;
+let minTemp3C = null;
+let maxTemp4C = null;
+let minTemp4C = null;
+let maxTemp5C = null;
+let minTemp5C = null;
+
+let celsiusSelector = document.querySelector("#celsius");
+let farenheitSelector = document.querySelector("#farenheit");
 
 // event listeners
 
