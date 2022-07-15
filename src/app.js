@@ -102,6 +102,27 @@ function convertToF(value) {
   document.querySelector("#min-temp-5").innerHTML = Math.round(
     (minTemp5C * 9) / 5 + 32
   );
+
+  document.querySelector(
+    "#wind-today"
+  ).innerHTML = `<strong>Wind</strong> ${Math.round(
+    windTodayMetric * 2.23694
+  )}mph`;
+  document.querySelector("#wind-d1").innerHTML = `${Math.round(
+    windD1Metric * 2.23694
+  )}mph`;
+  document.querySelector("#wind-d2").innerHTML = `${Math.round(
+    windD2Metric * 2.23694
+  )}mph`;
+  document.querySelector("#wind-d3").innerHTML = `${Math.round(
+    windD3Metric * 2.23694
+  )}mph`;
+  document.querySelector("#wind-d4").innerHTML = `${Math.round(
+    windD4Metric * 2.23694
+  )}mph`;
+  document.querySelector("#wind-d5").innerHTML = `${Math.round(
+    windD5Metric * 2.23694
+  )}mph`;
 }
 
 function convertToC(value) {
@@ -127,6 +148,15 @@ function convertToC(value) {
   document.querySelector("#min-temp-4").innerHTML = minTemp4C;
   document.querySelector("#max-temp-5").innerHTML = maxTemp5C;
   document.querySelector("#min-temp-5").innerHTML = minTemp5C;
+
+  document.querySelector(
+    "#wind-today"
+  ).innerHTML = `<strong>Wind</strong> ${windTodayMetric}m/s`;
+  document.querySelector("#wind-d1").innerHTML = `${windD1Metric}m/s`;
+  document.querySelector("#wind-d2").innerHTML = `${windD2Metric}m/s`;
+  document.querySelector("#wind-d3").innerHTML = `${windD3Metric}m/s`;
+  document.querySelector("#wind-d4").innerHTML = `${windD4Metric}m/s`;
+  document.querySelector("#wind-d5").innerHTML = `${windD5Metric}m/s`;
 }
 
 // search city or location and give temperature
@@ -145,6 +175,12 @@ function displayForecast(response) {
   minTemp4C = Math.floor(forecast[4].temp.min);
   maxTemp5C = Math.ceil(forecast[5].temp.max);
   minTemp5C = Math.floor(forecast[5].temp.min);
+
+  windD1Metric = Math.round(forecast[1].wind_speed);
+  windD2Metric = Math.round(forecast[2].wind_speed);
+  windD3Metric = Math.round(forecast[3].wind_speed);
+  windD4Metric = Math.round(forecast[4].wind_speed);
+  windD5Metric = Math.round(forecast[5].wind_speed);
 
   document.querySelector(
     "#rain-today"
@@ -191,9 +227,9 @@ function displayForecast(response) {
                  }%</p>
                </div>
                <div class="col-6">
-                 <p class="weather-details"><strong>Wind</strong> ${Math.round(
-                   forecast[index].wind_speed * 3.6
-                 )}km/h</p>
+                 <p class="weather-details"><strong>Wind</strong> <span id="wind-d${index}">${Math.round(
+          forecast[index].wind_speed
+        )} m/s</span></p>
                  <p class="weather-details"><strong>Pressure</strong>${
                    forecast[index].pressure
                  }mb</p>
@@ -223,6 +259,8 @@ function getTemperature(response) {
   todayCelsiusTemp = Math.round(response.data.main.temp);
   todayFeelsCelsiusTemp = Math.round(response.data.main.feels_like);
 
+  windTodayMetric = Math.round(response.data.wind.speed);
+
   document.getElementById("empty-state").style.display = "none";
   document.getElementById("weather-today").style.display = "block";
   document.getElementById("forecast-5days").style.display = "block";
@@ -244,9 +282,7 @@ function getTemperature(response) {
   ).innerHTML = `<strong>Humidity</strong> ${response.data.main.humidity}%`;
   document.querySelector(
     "#wind-today"
-  ).innerHTML = `<strong>Wind</strong> ${Math.round(
-    response.data.wind.speed * 3.6
-  )}km/h`;
+  ).innerHTML = `<strong>Wind</strong> ${windTodayMetric}m/s`;
   document.querySelector(
     "#pressure-today"
   ).innerHTML = `<strong>Pressure</strong> ${response.data.main.pressure}mb`;
@@ -319,6 +355,15 @@ let minTemp5C = null;
 
 let celsiusSelector = document.querySelector("#celsius");
 let farenheitSelector = document.querySelector("#farenheit");
+
+// wind
+
+let windTodayMetric = null;
+let windD1Metric = null;
+let windD2Metric = null;
+let windD3Metric = null;
+let windD4Metric = null;
+let windD5Metric = null;
 
 // event listeners
 
