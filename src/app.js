@@ -105,7 +105,7 @@ function convertToF(value) {
 
   document.querySelector(
     "#wind-today"
-  ).innerHTML = `<strong>Wind</strong> ${Math.round(
+  ).innerHTML = `<i class="fa-solid fa-wind m-1"></i> ${Math.round(
     windTodayMetric * 2.23694
   )}mph`;
   document.querySelector("#wind-d1").innerHTML = `${Math.round(
@@ -151,7 +151,7 @@ function convertToC(value) {
 
   document.querySelector(
     "#wind-today"
-  ).innerHTML = `<strong>Wind</strong> ${windTodayMetric}m/s`;
+  ).innerHTML = `<i class="fa-solid fa-wind m-1"></i> ${windTodayMetric}m/s`;
   document.querySelector("#wind-d1").innerHTML = `${windD1Metric}m/s`;
   document.querySelector("#wind-d2").innerHTML = `${windD2Metric}m/s`;
   document.querySelector("#wind-d3").innerHTML = `${windD3Metric}m/s`;
