@@ -184,7 +184,9 @@ function displayForecast(response) {
 
   document.querySelector(
     "#rain-today"
-  ).innerHTML = `<strong>Chance of rain</strong> ${forecast[0].pop * 100}%`;
+  ).innerHTML = `<i class="fa-solid fa-umbrella"></i> ${
+    forecast[0].pop * 100
+  }%`;
 
   let forecastHTML = `<ul class="list-group">`;
 
@@ -219,18 +221,18 @@ function displayForecast(response) {
          <li class="list-group-item extra-details" id="day-${index}-details">
            <div class="row">
                <div class="col-6">
-                 <p class="weather-details"><strong>Chance of rain</strong> ${
+                 <p class="weather-details"><i class="fa-solid fa-umbrella"></i> ${Math.round(
                    forecast[index].pop * 100
-                 }%</p>
-                 <p class="weather-details"><strong>Humidity</strong> ${
+                 )}%</p>
+                 <p class="weather-details"><i class="fa-solid fa-droplet"></i> ${
                    forecast[index].humidity
                  }%</p>
                </div>
                <div class="col-6">
-                 <p class="weather-details"><strong>Wind</strong> <span id="wind-d${index}">${Math.round(
+                 <p class="weather-details"><i class="fa-solid fa-wind m-1"></i> <span id="wind-d${index}">${Math.round(
           forecast[index].wind_speed
         )} m/s</span></p>
-                 <p class="weather-details"><strong>Pressure</strong>${
+                 <p class="weather-details"><span class="iconify" data-icon="wi:barometer" data-width="22"></span>${
                    forecast[index].pressure
                  }mb</p>
                </div>
@@ -279,13 +281,14 @@ function getTemperature(response) {
   //           ${Math.round(response.data.daily[0].pop * 100)}%`;
   document.querySelector(
     "#humidity-today"
-  ).innerHTML = `<strong>Humidity</strong> ${response.data.main.humidity}%`;
+  ).innerHTML = `<i class="fa-solid fa-droplet"></i> ${response.data.main.humidity}%`;
   document.querySelector(
     "#wind-today"
-  ).innerHTML = `<strong>Wind</strong> ${windTodayMetric}m/s`;
+  ).innerHTML = `<i class="fa-solid fa-wind m-1"></i>  ${windTodayMetric}m/s`;
   document.querySelector(
     "#pressure-today"
-  ).innerHTML = `<strong>Pressure</strong> ${response.data.main.pressure}mb`;
+  ).innerHTML = `<span class="iconify" data-icon="wi:barometer" data-width="22"></span>
+${response.data.main.pressure}mb`;
   document.querySelector("#current-city").innerHTML = `${response.data.name}`;
   document
     .querySelector("#weather-icon")
