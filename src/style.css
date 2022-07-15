@@ -70,7 +70,7 @@ footer {
 .weather-icon {
   display: block;
   margin: 0 auto 10px auto;
-  width: 90px;
+  width: 70px;
   max-width: 80%;
 }
 .min-max {
@@ -90,18 +90,18 @@ footer {
 }
 .temperatur {
   text-align: center;
-  font-size: 44px;
+  font-size: 40px;
   margin: 0;
   font-weight: 700;
 }
 .units {
   position: relative;
-  margin-top: -70px;
-  margin-left: 71px;
-  margin-bottom: 42px;
+  margin-top: -53px;
+  margin-left: 65px;
+  margin-bottom: 18px;
 }
 .temp-unit {
-  font-size: 20px;
+  font-size: 14px;
   padding: 0;
   margin: 0;
   border: none;
@@ -145,20 +145,12 @@ footer {
   margin: 8px 0 12px 0;
 }
 
-.next-1-day,
-.next-2-day,
-.next-3-day,
-.next-4-day,
-.next-5-day {
+.next-days {
   margin-top: 12px;
   font-weight: 600;
 }
 
-.temp-next-1d,
-.temp-next-2d,
-.temp-next-3d,
-.temp-next-4d,
-.temp-next-5d {
+.temp-next-days {
   text-align: right;
   font-size: 16px;
   margin-top: 12px;
@@ -171,8 +163,13 @@ footer {
   cursor: pointer;
   background-color: #e7f0fd;
 }
-.active,
+
 .collapsible:hover {
-  background-color: #0d6efd;
+  background-color: #d6e6fc;
+  color: #000;
+  border-color: rgba(0, 0, 0, 0.125);
+}
+.active:hover {
+  background-color: #0359d9;
   color: #fff;
 }
