@@ -160,7 +160,7 @@ function convertToC(value) {
 }
 
 // search city or location and give temperature
-function displayForecast(response) {
+function showForecast(response) {
   console.log(response);
 
   let forecast = response.data.daily;
@@ -184,9 +184,9 @@ function displayForecast(response) {
 
   document.querySelector(
     "#rain-today"
-  ).innerHTML = `<i class="fa-solid fa-umbrella"></i> ${
+  ).innerHTML = `<i class="fa-solid fa-umbrella"></i> ${Math.round(
     forecast[0].pop * 100
-  }%`;
+  )}%`;
 
   let forecastHTML = `<ul class="list-group">`;
 
@@ -251,7 +251,7 @@ function displayForecast(response) {
   // table format
   document.querySelector("#day-5-summary").classList.add("rounded-bottom");
 }
-function getTemperature(response) {
+function showTemperature(response) {
   //change from empty state to result
   console.log(response);
 
@@ -263,7 +263,7 @@ function getTemperature(response) {
 
   windTodayMetric = Math.round(response.data.wind.speed);
 
-  document.getElementById("empty-state").style.display = "none";
+  document.getElementById("empty-state").innerHTML = ``;
   document.getElementById("weather-today").style.display = "block";
   document.getElementById("forecast-5days").style.display = "block";
 
@@ -275,10 +275,6 @@ function getTemperature(response) {
   ).innerHTML = `Feels like ${todayFeelsCelsiusTemp}°`;
   document.querySelector("#summary-today").innerHTML =
     response.data.weather[0].description;
-  // document.querySelector(
-  //   "#rain-today"
-  // ).innerHTML = `<strong>Chance of rain</strong>
-  //           ${Math.round(response.data.daily[0].pop * 100)}%`;
   document.querySelector(
     "#humidity-today"
   ).innerHTML = `<i class="fa-solid fa-droplet"></i> ${response.data.main.humidity}%`;
@@ -297,14 +293,14 @@ ${response.data.main.pressure}mb`;
   let lon = response.data.coord.lon;
   let units = "metric";
   let apiUrl = `${apiForecastEndPoint}?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKeyWeather}`;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(showForecast);
 }
 
 function searchCity(city) {
   let searchInput = city;
   let apiUrl = `${apiWeatherEndPoint}?q=${searchInput}&units=metric&appid=${apiKeyWeather}`;
   console.log(apiUrl);
-  axios.get(apiUrl).then(getTemperature);
+  axios.get(apiUrl).then(showTemperature);
 }
 
 //show searched value in HTML after submittng search
@@ -322,7 +318,7 @@ function getPosition(position) {
   let units = "metric";
   let apiUrl = `${apiWeatherEndPoint}?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKeyWeather}`;
   console.log(apiUrl);
-  axios.get(apiUrl).then(getTemperature);
+  axios.get(apiUrl).then(showTemperature);
 }
 
 function fetchLocation() {
