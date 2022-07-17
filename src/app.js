@@ -289,6 +289,10 @@ ${response.data.main.pressure}mb`;
   document
     .querySelector("#weather-icon")
     .setAttribute("src", `img/${response.data.weather[0].icon}.png`);
+  document
+    .querySelector("#weather-icon")
+    .setAttribute("alt", response.data.weather[0].description);
+
   let lat = response.data.coord.lat;
   let lon = response.data.coord.lon;
   let units = "metric";
