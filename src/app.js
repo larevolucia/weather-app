@@ -252,7 +252,6 @@ function showForecast(response) {
   document.querySelector("#day-5-summary").classList.add("rounded-bottom");
 }
 function showTemperature(response) {
-  //change from empty state to result
   console.log(response);
 
   celsiusSelector.classList.add("unit-selected");
@@ -262,10 +261,6 @@ function showTemperature(response) {
   todayFeelsCelsiusTemp = Math.round(response.data.main.feels_like);
 
   windTodayMetric = Math.round(response.data.wind.speed);
-
-  document.getElementById("empty-state").innerHTML = ``;
-  document.getElementById("weather-today").style.display = "block";
-  document.getElementById("forecast-5days").style.display = "block";
 
   // current date
 
@@ -333,9 +328,6 @@ function fetchLocation() {
 const apiKeyWeather = "6bf5993fd6f246de7b98dc6c43d6cd79";
 const apiForecastEndPoint = "https://api.openweathermap.org/data/2.5/onecall";
 const apiWeatherEndPoint = "https://api.openweathermap.org/data/2.5/weather";
-//const apiKeyTimezone = "W3RKUIYB1P7Z";
-//const apiTimezoneEndPoint = "http://api.timezonedb.com/v2.1/get-time-zone";
-// let timezoneUrl = `${apiTimezoneEndPoint}?key=${apiKeyTimezone}&format=json&by=position&lat=40.689247&lng=-74.044502 `;
 
 // dates
 
@@ -384,3 +376,16 @@ celsiusLink.addEventListener("click", convertToC);
 
 let farenheitLink = document.querySelector("#farenheit");
 farenheitLink.addEventListener("click", convertToF);
+
+function getIP() {
+  fetch(
+    "https://api.geoapify.com/v1/ipinfo?&apiKey=7f9591bf94024929bc5b16a35c5d0daa",
+    {
+      method: "GET"
+    }
+  )
+    .then((response) => response.json())
+    .then((result) => searchCity(result.city.name))
+    .catch((error) => console.log("error", error));
+}
+getIP();

@@ -39,19 +39,17 @@ footer {
 .weather-today {
   padding: 25px;
 }
-/*empty state*/
-.empty-state {
+/*.empty-state {
   display: block;
 }
 .empty-state-img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
-}
+}*/
+
 /*today weather*/
-.weather-result {
-  display: none;
-}
+
 .city,
 .date {
   font-family: "Raleway", sans-serif;
