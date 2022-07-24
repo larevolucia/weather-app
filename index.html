@@ -23,6 +23,11 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -48,10 +53,6 @@
               <button
                 id="location-button"
                 type="button"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                data-bs-custom-class="custom-tooltip"
-                title="Use current location"
                 class="btn btn-primary btn-sm m-1"
               >
                 <i class="fa-solid fa-location-dot"></i>
@@ -94,12 +95,40 @@
             </div>
             <div class="row m-3">
               <div class="col-6">
-                <p class="today-details" id="rain-today"></p>
-                <p class="today-details" id="humidity-today"></p>
+                <p
+                  class="today-details"
+                  id="rain-today"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  data-bs-custom-class="custom-tooltip"
+                  title="Chance of rain"
+                ></p>
+                <p
+                  class="today-details"
+                  id="humidity-today"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  data-bs-custom-class="custom-tooltip"
+                  title="Humidity"
+                ></p>
               </div>
               <div class="col-6">
-                <p class="today-details" id="wind-today"></p>
-                <p class="today-details" id="pressure-today"></p>
+                <p
+                  class="today-details"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  data-bs-custom-class="custom-tooltip"
+                  title="Wind speed"
+                  id="wind-today"
+                ></p>
+                <p
+                  class="today-details"
+                  id="pressure-today"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  data-bs-custom-class="custom-tooltip"
+                  title="Pressure"
+                ></p>
               </div>
             </div>
           </div>
@@ -125,6 +154,7 @@
         </div>
       </footer>
     </div>
+
     <script src="src/app.js"></script>
   </body>
 </html>

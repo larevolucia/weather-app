@@ -161,8 +161,6 @@ function convertToC(value) {
 
 // search city or location and give temperature
 function showForecast(response) {
-  console.log(response);
-
   let forecast = response.data.daily;
 
   maxTemp1C = Math.ceil(forecast[1].temp.max);
@@ -221,20 +219,40 @@ function showForecast(response) {
          <li class="list-group-item extra-details" id="day-${index}-details">
            <div class="row">
                <div class="col-6">
-                 <p class="weather-details"><i class="fa-solid fa-umbrella"></i> ${Math.round(
+                 <p class="weather-details"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="top"
+                 data-bs-custom-class="custom-tooltip"
+                 title="Chance of rain"
+                 ><i class="fa-solid fa-umbrella"></i> ${Math.round(
                    forecast[index].pop * 100
                  )}%</p>
-                 <p class="weather-details"><i class="fa-solid fa-droplet"></i> ${
+                 <p class="weather-details"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="bottom"
+                 data-bs-custom-class="custom-tooltip"
+                 title="Humidity"
+                 ><i class="fa-solid fa-droplet"></i> ${
                    forecast[index].humidity
                  }%</p>
                </div>
                <div class="col-6">
-                 <p class="weather-details"><i class="fa-solid fa-wind m-1"></i> <span id="wind-d${index}">${Math.round(
+                 <p class="weather-details"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="top"
+                 data-bs-custom-class="custom-tooltip"
+                 title="Wind speed"
+                 ><i class="fa-solid fa-wind m-1"></i> <span id="wind-d${index}">${Math.round(
           forecast[index].wind_speed
         )} m/s</span></p>
-                 <p class="weather-details"><span class="iconify" data-icon="wi:barometer" data-width="22"></span>${
+                 <p class="weather-details"     
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="bottom"
+                 data-bs-custom-class="custom-tooltip"
+                 title="Pressure"
+                 ><span class="iconify" data-icon="wi:barometer" data-width="22"></span>${
                    forecast[index].pressure
-                 }mb</p>
+                 }hPa</p>
                </div>
             </div>
           </li>
@@ -252,8 +270,6 @@ function showForecast(response) {
   document.querySelector("#day-5-summary").classList.add("rounded-bottom");
 }
 function showTemperature(response) {
-  console.log(response);
-
   celsiusSelector.classList.add("unit-selected");
   farenheitSelector.classList.remove("unit-selected");
 
@@ -279,7 +295,7 @@ function showTemperature(response) {
   document.querySelector(
     "#pressure-today"
   ).innerHTML = `<span class="iconify" data-icon="wi:barometer" data-width="22"></span>
-${response.data.main.pressure}mb`;
+${response.data.main.pressure}hPa`;
   document.querySelector("#current-city").innerHTML = `${response.data.name}`;
   document
     .querySelector("#weather-icon")
@@ -298,8 +314,12 @@ ${response.data.main.pressure}mb`;
 function searchCity(city) {
   let searchInput = city;
   let apiUrl = `${apiWeatherEndPoint}?q=${searchInput}&units=metric&appid=${apiKeyWeather}`;
-  console.log(apiUrl);
-  axios.get(apiUrl).then(showTemperature);
+  axios
+    .get(apiUrl)
+    .then(showTemperature)
+    .catch((error) => {
+      alert("Ops! Couldn't find the city you searched.");
+    });
 }
 
 //show searched value in HTML after submittng search
@@ -316,13 +336,26 @@ function getPosition(position) {
   let lon = position.coords.longitude;
   let units = "metric";
   let apiUrl = `${apiWeatherEndPoint}?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKeyWeather}`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(showTemperature);
 }
 
 function fetchLocation() {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
+
+function getIP() {
+  fetch(
+    "https://api.geoapify.com/v1/ipinfo?&apiKey=7f9591bf94024929bc5b16a35c5d0daa",
+    {
+      method: "GET"
+    }
+  )
+    .then((response) => response.json())
+    .then((result) => searchCity(result.city.name))
+    .catch((error) => console.log("error", error));
+}
+
+getIP();
 
 // api
 const apiKeyWeather = "6bf5993fd6f246de7b98dc6c43d6cd79";
@@ -376,16 +409,3 @@ celsiusLink.addEventListener("click", convertToC);
 
 let farenheitLink = document.querySelector("#farenheit");
 farenheitLink.addEventListener("click", convertToF);
-
-function getIP() {
-  fetch(
-    "https://api.geoapify.com/v1/ipinfo?&apiKey=7f9591bf94024929bc5b16a35c5d0daa",
-    {
-      method: "GET"
-    }
-  )
-    .then((response) => response.json())
-    .then((result) => searchCity(result.city.name))
-    .catch((error) => console.log("error", error));
-}
-getIP();
