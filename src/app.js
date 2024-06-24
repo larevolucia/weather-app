@@ -355,8 +355,6 @@ function getIP() {
     .catch((error) => console.log("error", error));
 }
 
-getIP();
-
 // api
 const apiKeyWeather = "6bf5993fd6f246de7b98dc6c43d6cd79";
 const apiForecastEndPoint = "https://api.openweathermap.org/data/2.5/onecall";
@@ -394,6 +392,7 @@ let windD4Metric = null;
 let windD5Metric = null;
 
 // event listeners
+document.addEventListener("DOMContentLoaded", getIP());
 
 let searchInput = document.querySelector("#search-form");
 searchInput.addEventListener("submit", submitHandle);
