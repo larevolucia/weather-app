@@ -27,7 +27,7 @@ require(["axios"], function (axios) {
   // Initialize and fetch API key
   async function initialize() {
     await getApiKey();
-    searchCity("Amsterdam"); // Initialize with a default city
+    searchCity("New York"); // Initialize with a default city
   }
 
   // Call initialize to set up API key and default search
